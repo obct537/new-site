@@ -6,6 +6,15 @@ class super {
 	public $create_success = "Success.";
 	public $edit_success = "Success.";
 
+	//
+	// initalization function
+	// If the $id is passed, all the object
+	// properties will be set
+	//
+	// PARAMS:
+	// string $id
+	//		id of the object being created
+	//
 	public function __construct($id = NULL) {
 		if( pop_values($id, &$this) ) {
 			return TRUE;
@@ -14,6 +23,17 @@ class super {
 		}
 	}
 
+	//
+	// As the name suggests, this is the default edit query
+	// The $options['unique'] array is for fields that need 
+	// to be unique (like a username, email, etc)
+	//
+	// PARAMS:
+	// array $info
+	//		array of key & values to be edited
+	// array $options
+	// 		array of options to tack onto the query
+	//
 	public function edit($info, $options) {
 
 		if( !empty($this->unique) ) {
@@ -21,6 +41,8 @@ class super {
 				$options['unique'][$key]['value']= $info[$key];
 				$options['unique'][$key]['message'] = $value;
 			}
+		}else{
+			return FALSE;
 		}
 
 		if( !empty( $info ) ) {
@@ -34,6 +56,13 @@ class super {
 		}
 	}
 
+	//
+	// Query that returns a single object
+	//
+	// PARAMS: 
+	// string $id:
+	//		The ID of the object
+	//
 	public function getSingle($id) {
 		$single = getSingle($id, $this->table);
 		if( !empty( $single ) ) {
@@ -44,6 +73,16 @@ class super {
 		}
 	}
 
+	// 
+	// Default create function.
+	// See edit() for info the on the $options['unique'] array
+	//
+	// PARAMS:
+	// array $info 
+	//		array of key & values to be edited
+	// array $options
+	// 		array of options to tack onto the query
+	//
 	public function create($info, $options = NULL) {
 
 		if( !empty($this->unique) ) {
@@ -51,6 +90,8 @@ class super {
 				$options['unique'][$key]['value']= $info[$key];
 				$options['unique'][$key]['message'] = $value;
 			}
+		}else{
+			return FALSE;
 		}
 
 		if( create($info, $this->table, $this->form_options, $options) ) { 
@@ -60,6 +101,15 @@ class super {
 		}
 	}
 
+	//
+	// function to get all the records of the object type
+	// view() is the default function to use, but getAll()
+	// can be used in special situations
+	//
+	// PARAMS: 
+	// array $options
+	//		array of options to tack onto the query
+	//
 	public function getAll( $options = NULL ) {
 		if( $all = getAll($this->table, $options) ) {
 			return $all;
@@ -68,6 +118,15 @@ class super {
 		}
 	}
 
+	//
+	// This is the default view function.
+	// getAll() is a sub-function of this.
+	// It can also be used on it's on in special situations
+	//	
+	// PARAMS: 
+	// array $options
+	//		array of options to tack onto the query
+	//
 	public function view($options = NULL) {
 		if( $all = view(&$this, $options) ) {
 			return $all;
@@ -76,6 +135,10 @@ class super {
 		}
 	}
 
+	//
+	// This function is placed on a page to catch POST 
+	// submissions for create/edit
+	//
 	public function catch_action($id = NULL) {
 
 		$action = isset($_GET['action']) ? $_GET['action']:FALSE;
