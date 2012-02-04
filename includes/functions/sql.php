@@ -145,7 +145,7 @@ function check_value_unique($options, $table) {
 			
 			$sql .= "`" . $key . "`='" . $value['value'] . "'";
 
-			if( $res = mysql_query($sql) ) {
+			if( $res = query($sql) ) {
 				if( mysql_num_rows($res) > 0 ) {
 
 					//There was a match, so error out.
@@ -163,11 +163,13 @@ function check_value_unique($options, $table) {
 	}
 }
 
-function build_sql($options, $sql) {
-	add_private_fields($options, &$sql);
-	handle_where($options, &$sql);
-	handle_sort($options, &$sql);
+function query( $sql ) {
+	global $DB;
 
-	return $sql;
+	if( $res = $DB->query($sql) ) {
+		return $res;
+	}else{
+		return FALSE;
+	}
 }
 

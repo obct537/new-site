@@ -6,6 +6,10 @@ class super {
 	public $create_success = "Success.";
 	public $edit_success = "Success.";
 
+	private $profiler;
+	private $DB;
+	private $db;
+
 	//
 	// initalization function
 	// If the $id is passed, all the object
@@ -16,11 +20,16 @@ class super {
 	//		id of the object being created
 	//
 	public function __construct($id = NULL) {
+		$this->profiler = new PhpQuickProfiler(PhpQuickProfiler::getMicroTime());
+		
+		global $DB;
+		$this->DB = $DB;
+
 		if( pop_values($id, &$this) ) {
 			return TRUE;
 		}else{
 			return FALSE;
-		}
+		}	
 	}
 
 	//
@@ -175,6 +184,10 @@ class super {
 	//
 	public function set_view_options() {
 	
+	}
+
+	public function __destruct() {
+
 	}
 }
 

@@ -14,6 +14,7 @@
 
 		public function __construct( $page_name = NULL, $level = NULL ) {
 		
+			$this->profiler = new PhpQuickProfiler(PhpQuickProfiler::getMicroTime());	
 			$titles = new title();
 			$newTitle = $titles->pickTitle();
 			
@@ -57,7 +58,7 @@
 					
 						$sql = "INSERT INTO `" . DB_TBL_PAGES . "` SET
 							`name`='" . $page_name . "', `active`='0'";
-						if($result = mysql_query($sql)) {
+						if($result = query($sql)) {
 							successBox("Page Created");
 						}else{
 							errorBox("Failed to create page");
@@ -72,5 +73,9 @@
 		public function __destruct() {
 		
 			require_once( TPL_STOP );
+			if( DEBUG == "on" ) {
+				global $DB;
+				$this->profiler->display($DB);
+			}
 		}
 	}

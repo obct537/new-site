@@ -21,7 +21,9 @@ class Member extends super {
 	public function login($info){
 		
 		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS . "` WHERE `username`='" . $info['username'] . "' AND `active`='1' AND `password`='" . $info['password'] . "'";
-		$result = mysql_query($sql);
+
+		
+		$result = query($sql);
 		
 		if( mysql_num_rows($result) > 0 ) {
 			
@@ -43,7 +45,8 @@ class Member extends super {
 	
 	public function getMemberID($username) { 
 		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS . "` WHERE `username`='" . $username . "'";
-		$result = mysql_query($sql);
+		
+		$result = query($sql);
 		echo mysql_error();
 		
 		if( mysql_num_rows($result) > 0 ) {
@@ -57,7 +60,7 @@ class Member extends super {
 	
 	public function getLevel($name) {
 		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS ."` WHERE `username`='" . $name . "'";
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 		
 			$row = mysql_fetch_assoc($res);
 			return $row['level'];
@@ -108,7 +111,7 @@ class Member extends super {
 		$sql .= "`key`='" . $key . "', `username`='" . $info['username'];
 		$sql .= "', `timeout`='" . (time() + 600) . "'";
 
-		if( !($res = mysql_query( $sql )) ) {
+		if( !($res = query( $sql )) ) {
 			return FALSE;
 		}
 
@@ -120,6 +123,7 @@ class Member extends super {
 		$headers = "From: obct537@gmail.com";
 
 		if( mail( $info['email'], "Activation Email", $message, $headers ) ) {
+			Console::logSpeed();
 			return TRUE;
 		}else{
 			return FALSE;
@@ -135,7 +139,7 @@ class Member extends super {
 			$sql = "SELECT * FROM `" . DB_TBL_ACTIVATE . "` WHERE ";
 			$sql .= "`key`='" . $key . "'";
 
-			if( $res = mysql_query($sql) ) {
+			if( $res = query($sql) ) {
 				$record = mysql_fetch_assoc($res);
 
 				if( $record['timeout'] > time() ) {

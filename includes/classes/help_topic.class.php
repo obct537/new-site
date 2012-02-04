@@ -23,7 +23,7 @@ class help_topic extends super {
 			$sql .= " AND `active`='1'";
 		}
 
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 
 			$counter++;
 			if( mysql_num_rows($res) > 0 ){
@@ -53,7 +53,7 @@ class help_topic extends super {
 		$sql = "SELECT * FROM `" . DB_TBL_ISSUES . "` WHERE `topic_id`='" . $id . "'";
 		$count = 0;
 
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 			while($record = mysql_fetch_assoc($res)) {
 				$count++;
 			}
@@ -69,7 +69,7 @@ class help_topic extends super {
 	
 		$sql = "SELECT * FROM `" . $this->table . "` WHERE `id`='" . $id . "' LIMIT 1";
 
-		if($res = mysql_query($sql) ) {
+		if($res = query($sql) ) {
 			if( mysql_num_rows($res) > 0 ) {
 
 				$record = mysql_fetch_assoc($res);
@@ -127,7 +127,7 @@ class help_topic extends super {
 
 		$sql = "SELECT * FROM `". DB_TBL_TOPICS . "` WHERE `parent_id`='" . $parent ."'";
 
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 
 			$counter++;
 			if( mysql_num_rows($res) > 0 ){

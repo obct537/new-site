@@ -4,7 +4,7 @@ function pop_values($id, $that) {
 	if( $id != NULL ) {
 		$sql = "SELECT * FROM `" . $that->table . "` WHERE `id`='" . $id . "' LIMIT 1";
 
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 
 			$record = mysql_fetch_assoc($res);
 
@@ -42,7 +42,7 @@ function edit($info, $table, $options) {
 
 		//echo $sql;
 
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 
 			if( mysql_affected_rows() > 0 ) {
 				return TRUE;
@@ -80,7 +80,7 @@ function create($info, $table, $values, $options = NULL) {
 			add_private_fields($options, &$sql);
 		}
 
-		if($res = mysql_query($sql)) {
+		if($res = query($sql)) {
 			return TRUE;
 		}else{
 			echo mysql_error();
@@ -99,7 +99,8 @@ function getAll($table, $options = NULL) {
 	handle_sort($options, &$sql);
 
 	//echo $sql;
-	if( $res = mysql_query($sql) ) {
+	
+	if( $res = query($sql) ) {
 			
 		while($record = mysql_fetch_assoc($res) ) {
 			$all[] = $record;	
@@ -115,7 +116,7 @@ function getAll($table, $options = NULL) {
 function getSingle($id, $table) {
 	$sql = "SELECT * FROM `" . $table . "` WHERE `id`='" . $id . "'";
 	
-	if( $res = mysql_query($sql) ) {
+	if( $res = query($sql) ) {
 		
 		$single = mysql_fetch_assoc($res);
 		if( !empty( $single ) ){
@@ -128,10 +129,10 @@ function getSingle($id, $table) {
 
 function check_unique($info, $table) {
 	$sql = "SELECT * FROM `" . $table . "` WHERE ";
-
+	
 	build_seq($info, &$sql, "AND");
 
-	if( $res = mysql_query($sql) ) {
+	if( $res = query($sql) ) {
 		if( mysql_num_rows($res) == 0 ) {
 			return TRUE;
 		}else{
