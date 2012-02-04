@@ -1,0 +1,143 @@
+
+
+.container a {
+    outline: none;
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 5px 5px black;
+}
+
+.container a:hover {
+    text-shadow: 0 3px 5px white;
+}
+
+/*
+.navbar li {
+    display: inline;
+    text-align: center;
+    text-decoration: none;
+    
+    
+    /* CSS3 Properties 
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+    
+    -webkit-box-shadow: 0 3px 2px black;
+    -moz-box-shadow: 0 1px 2px black;
+    box-shadow: 0 1px 2px black;
+
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+    color: #fef4e9;
+    border: solid 1px #da7c0c;
+    font-size: 80px;
+    margin: 20px;
+    background: #f78d1d;
+    background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+    background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+    filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+*/
+.testbutton {
+    width: 230px;
+    height: 70px;
+    
+    margin-right: 50px;
+    
+    display: inline;
+        
+    -webkit-box-shadow: 3px 2px 7px rgba( 0, 0, 0, .7);
+    -moz-box-shadow: 3px 2px 7px rgba(0,0,0, .7);
+    text-align: center;
+    
+    -webkit-border-radius: 200px;
+    -moz-border-radius: 200px;
+    border-radius: 200px;
+    border: 1px solid #333333;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(61, 61, 61, 0.8)), to(rgba(41, 41, 41, .9)));
+    background-image: -moz-linear-gradient(top,  rgba(61, 61, 61, 0.8),  rgba(41,41,41,.9));
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled='true',startColorstr=#cccccc,endColorstr=#ffffff,GradientType=0); zoom: 1;
+    
+    float: right;
+    position: relative;
+}
+
+.testbutton:hover {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(255, 255, 255, 0.7)), to(rgba(10, 10, 10, .1)));
+    background-image: -moz-linear-gradient(top,  rgba(255, 255, 255, 0.7),  rgba(10,10,10,.1));
+}
+
+.testbutton strong {
+    font-size: 40px;
+    position: relative;
+    top: 10px;
+
+    text-align: center;
+    text-shadow: 0 3px 3px black;
+    vertical-align: middle;
+}
+
+.testglare {
+    height: 40px;
+    width: 205px;
+    
+    position: absolute;
+    top: 2px;
+    left: 12px;
+    
+    align: middle;
+    vertical-align: middle;
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 95%, from(rgba(255, 255, 255, 0.7)), to(rgba(255, 255, 255, 0)));
+    background-image: -moz-linear-gradient(top,  rgba(255, 255, 255, 0.7),  rgba(255,255,255,0));
+    
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+}
+
+.wrapper {
+    border: 15px solid rgba(1,1,1,.7);
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
+    
+    -webkit-box-shadow: 3px 8px 9px black;
+    -moz-box-shadow: 3px 8px 9px black;
+    margin-bottom: 50px;
+}
+
+.content p {
+    text-align: left;
+    color: rgba(1,1,1,.6);
+    margin: 20px;
+    text-shadow: 0 5px 10px white;
+    font-size: 80px;
+    font-family: arial, helvetica, "sans serif";
+}
+
+.content h1 {
+    text-align: center;
+    color: rgba(1,1,1,.6);
+    margin: 20px;
+    text-shadow: 0 5px 10px white;
+    font-size: 120px;
+    font-family: arial, helvetica, "sans serif";
+}
+
+
+/* --Save for later
+.glassBox {
+    width: 700px;
+    height: 200px;
+    margin: 10px;
+    padding: 0;
+    border: 1px solid rgba(0,0,0,0.5);
+    border-radius: 10px 10px 2px 2px;
+    background: rgba(0,0,0,0.25);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    -o-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 0 10px rgba(255,255,255,0.2), inset 0 10px 20px rgba(255,255,255,0.25), inset 0 -15px 30px rgba(0,0,0,0.3);
+}*/

@@ -1,0 +1,113 @@
+body {	background-image: url('../../../images/carbonfiber.gif');
+}
+.butten:hover {
+	color: #34b2ed;
+	text-shadow: 1px 1px 2px #34b2ed;
+}
+.loginBox {
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px gray solid;
+	margin: 2px;
+	width: 150px;
+	display: block;
+	background-color: #eee;
+}
+.login label {
+	text-decoration: underline;
+}
+.underline {
+	padding-bottom: 3px;
+	font-size: 22px;
+	border-bottom: 1px solid #e2e2e2;
+}
+.top {
+	margin-bottom: 20px;
+}
+.displayBox {
+	border: 5px solid gray;
+	border-radius: 10px;
+	width: 450px;	
+	padding: 10px;
+	margin: 20px auto 20px auto;
+}
+.box_content p {
+	margin-top: 10px;
+}
+.article {
+	padding-top: 25px;
+}
+.displayBox label {
+	display: block;
+	margin-top: 10px;
+}
+.butten {
+	border-radius: 15px;
+	padding: 3px 10px 3px 10px;
+	border: 1px gray solid;
+	width: auto;
+	margin-top: 5px;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 90%, from(rgba(241, 241, 241, 1)), to(rgba(161, 161, 161, 1)));
+	background-image: -moz-linear-gradient(top, rgba(241, 241, 241, 1), rgba(161, 161, 161, 1))
+}
+.textz {
+	border-radius: 5px;
+	border: 1px solid gray;	
+	padding: 5px;	
+	margin: 2px;
+	width: 150px;
+	display: block;
+	background-color: #fff;
+}
+.error {
+	border-radius: 10px;
+	border: 5px solid #FCACC0;
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.error p {
+	margin: 5px 10px 5px 10px;
+	color: #FCACC0;
+	text-align: center;
+}
+.success {
+	border-radius: 10px;
+	border: 5px solid #8CD14B;
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #E3FFC9;
+}
+.success p {
+	margin: 5px 10px 5px 10px;
+	color: #8CD14B;
+	text-align: center;
+}
+.formz {
+	width: 600px;
+	border: 1px solid #e2e2e2;
+	border-radius: 10px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 20px;
+}
+.formz textarea {
+	margin-right: auto;
+	margin-left: auto;
+}
+.formz label {
+	display: block;
+}
+.formbox {
+	width: 550px;
+	height: 350px;
+	border-radius: 10px;
+}
+#content_wrapper p{
+	padding: 0px;
+}
+.timestamp {
+	font-style: italic;
+	font-size: 11px;
+}

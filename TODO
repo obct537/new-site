@@ -1,0 +1,14 @@
+setup mod_rewrite
+
+create a more official "view" system
+
+Fix all the god-awful forms
+
+un-fuck the model/SQL system
+
+simplify/change the sessions/cookies
+
+create a password reset system
+
+finish/un-fuck the user activation system
+

@@ -1,0 +1,4 @@
+<?php
+
+popen("/home/obct537/test.sh");
+?>

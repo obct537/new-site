@@ -1,0 +1,156 @@
+body {
+	background-color: #111;
+	color: #ffffff;
+	font-family: tahoma;
+
+	margin: 0px;
+	background: url('background.jpg');
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h2 {
+	margin-top: 0px;
+}
+
+.break {
+	clear: both:
+	width: 100%
+}
+
+.title {
+	float: left;
+	margin: 2px 0 0 0;	
+	text-shadow: 1px 1px 6px #fff;
+}
+
+.title:hover {
+	text-shadow: 1px 1px 10px #ffbf00;
+}
+
+#wrapper {
+	width: 960px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+
+	padding: 20px;
+
+	/* experimental */
+	border-radius: 15px;
+	border: 1px solid black;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(14,14,14,.01)), to(rgba(0,0,0,.6)));
+}
+
+#contentBox {
+	height: 200px;
+	color: white;
+	padding: 20px;
+	background: black;
+	opacity: .5;
+	border-radius: 15px;
+}
+
+#contentBox p {
+	color: white;
+	opacity: 1;
+}
+
+#topBar {
+	/* Chrome */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#000));
+
+	/* FF */
+	background: -moz-linear-gradient(top,#333, #000);
+
+	/* This is a personal site, and I personally choose to not support IE */
+
+	position: fixed;
+
+	width: 100%;
+	height: 40px;
+	top: 0%;
+
+	padding-left: 0px;
+	margin-left: 0px;
+
+	z-index: 10000;
+
+}
+
+#topMenu {
+	height:100%;
+	width:960px;
+	margin-left: auto;
+	margin-right: auto;
+
+	font-size: 17px;
+}
+
+.navbar {
+	position: relative;
+	height: 20px;
+	width: 450px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;	
+}
+
+.navbar li {
+	display: inline;
+	list-style-type: none;
+	float: right;
+	height: 20px;
+	padding: 5px 20px 5px 20px;
+	margin: 5px 5px 5px 5px;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.navbar li:hover {
+	background: rgba(255,255,255,.2);
+}
+
+.login {
+	float: right;
+	margin: 0px;
+	padding: 0px;
+}
+
+.login li {
+	width: 35px;
+	display: inline;
+}
+
+.login a {
+	width: 30px;
+}
+.topLogin {
+	height: 20px;
+	width: 35px;
+	border-radius: 20px;
+	margin: 4px 0 0 0;
+	padding: 2px 15px 2px 15px;
+	text-align: center;
+	clear: none;
+	border: 3px solid #222;
+
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddd), to(#666));
+	background: -moz-linear-gradient(top, #ddd, #666);
+}
+
+.topLogin:hover {
+	color: white;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#0072ff), to(#001693));
+	background: -moz-linear-gradient(top, #ddd, #666);
+}
+
+.topLogin p {
+	color: black;
+	margin: 0;
+	width: 30px;
+}
+

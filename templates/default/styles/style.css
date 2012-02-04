@@ -1,0 +1,236 @@
+body {
+	background-color: #111;
+	color: #ffffff;
+	font-family: tahoma, verdana, arial;
+
+	margin: 0px;
+	background: url('../images/background.jpg');
+	overflow: scroll;
+}
+
+a {
+	color: inherit;
+	text-shadow: 1px 1px 5px #fff;
+}
+
+.simplea {
+	text-decoration: none;
+	text-shadow: none;
+}
+
+h2 {
+	margin-top: 0px;
+}
+
+.break {
+	clear: both;
+	width: 100%;
+	height: 5px;
+}
+
+.title {
+	float: left;
+	margin: 2px 0 0 0;	
+	text-shadow: 1px 1px 6px #fff !important;
+}
+
+.title:hover {
+	text-shadow: 1px 1px 10px #aaa !important;
+}
+
+.title p {
+	margin: 0px;
+}
+
+#wrapper {
+	width: 960px;
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 100px;
+
+	padding: 20px;
+
+	/* experimental */
+	border-radius: 15px;
+	border: 1px solid black;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(14,14,14,.01)), to(rgba(0,0,0,.6)));
+}
+
+#contentBox {
+	height: auto;
+	color: white;
+	padding: 20px;
+	background: rgba(0,0,0,.5);
+	border-radius: 15px;
+}
+
+#contentBox p {
+	color: white;
+}
+
+#topBar {
+	/* Chrome */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#333), to(#000));
+
+	/* FF */
+	background: -moz-linear-gradient(top,#333, #000);
+
+	/* This is a personal site, and I personally choose to not support IE */
+
+	position: absolute;
+
+	width: 100%;
+	height: 40px;
+	top: 0%;
+
+	padding-left: 0px;
+	margin-left: 0px;
+
+	z-index: 10000;
+
+}
+
+#topMenu {
+	height:100%;
+	width:960px;
+	margin-left: auto;
+	margin-right: auto;
+
+	font-size: 17px;
+}
+
+.navbar {
+	position: relative;
+	height: 20px;
+	width: 450px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;	
+}
+
+.navbar li {
+	display: inline;
+	list-style-type: none;
+	float: right;
+	height: 20px;
+	padding: 5px 15px 5px 15px;
+	margin: 5px 5px 5px 5px;
+	border-radius: 20px;
+	text-align: center;
+}
+
+.navbar li:hover {
+	background: rgba(255,255,255,.2);
+}
+
+.login {
+	float: right;
+	margin: 0px;
+	padding: 0px;
+}
+
+.login li {
+	width: 35px;
+	display: inline;
+}
+
+.login a {
+	width: 30px;
+}
+
+.welcome {
+	margin: 7px 0 0 0;
+} 
+
+.topLogin {
+	float: right;
+	border-radius: 20px;
+	margin: 7px 0 0 5px;
+	padding: 2px 15px 2px 15px;
+	text-align: center;
+	clear: none;
+	border: 3px solid #222;
+
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddd), to(#666));
+	background: -moz-linear-gradient(top, #ddd, #666);
+}
+
+.topLogin:hover {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#888));
+	background: -moz-linear-gradient(top, #fff, #888);
+}
+
+.topLogin p {
+	color: black;
+	margin: 0;
+}
+
+.form_group {
+	width: 50px;
+	margin: 15px 0 5px 0;
+}
+
+.form_group label {
+	display: inline-block;
+}
+
+.formbox {
+	width: 500px;
+	height: 300px;
+}
+
+.butten {
+	float: none;
+	margin: 10px auto 0 auto;
+	border-radius: 20px;
+	padding: 2px 10px 2px 10px;
+	font-size: 19px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ddd), to(#666));
+	background: -moz-linear-gradient(top, #ddd, #666);
+	border: 3px solid #222;
+}
+
+.butten:hover {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#888));
+	background: -moz-linear-gradient(top, #fff, #888);
+}
+
+.response {
+	width: 450px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 1px solid white;
+	text-align: center;
+	margin-bottom: 20px;
+	border-radius: 15px;
+	opacity: .7;
+}
+
+.success {
+	background-color: #9EFFAB;
+	border: 5px solid #30C945;
+}
+
+.success p {
+	color: #30C945 !important;
+}
+
+.error {
+	background-color: #FFC4C4;
+	border: 5px solid #FF7373;
+}
+
+.error p {
+	color: #FF7373 !important;
+}
+
+.footer {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.footer p {
+	font-size: 10px;
+	color: gray !important;
+}
