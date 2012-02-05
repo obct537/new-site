@@ -19,6 +19,9 @@ define('DB_PASSWORD'	, '');
 define('DB_HOST' 	, '');
 define('DB_NAME'	, '');
 
+//PQP
+define('DEBUG'		, 'off');
+
 //Email
 define('MAIL_FROM'	, 'obct537@gmail.com');
 
