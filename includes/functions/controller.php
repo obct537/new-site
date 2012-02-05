@@ -57,7 +57,7 @@ function set_single($that, $key, $value) {
 
 	$sql .= " SET `" . $key . "`='" . $value . "'";
 
-	if( $res = mysql_query( $sql ) ) {
+	if( $res = query( $sql ) ) {
 		return TRUE; 
 	}else{
 		return FALSE;

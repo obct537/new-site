@@ -50,7 +50,7 @@
 				$this->name = $page_name;
 
 				$sql = "SELECT * FROM `" . DB_TBL_PAGES . "` WHERE `name`='" . $page_name . "'";
-				if($result = mysql_query($sql)) {
+				if($result = query($sql)) {
 					if($row = mysql_fetch_assoc($result)) {
 						$this->content = $row['content'];
 						

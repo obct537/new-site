@@ -10,7 +10,7 @@ public $userid = '';
 	public function checkSession($id, $userid) {
 		
 		$sql = "SELECT * FROM `" . DB_TBL_SESSIONS . "` WHERE `id`='" . $id . "' AND `userid`='" . $userid . "' LIMIT 1";
-		if($result = mysql_query($sql)) {
+		if($result = query($sql)) {
 		
 			$row = mysql_fetch_assoc($result);
 
@@ -31,7 +31,7 @@ public $userid = '';
 
 		$sql = "DELETE FROM `" . DB_TBL_SESSIONS . "` WHERE `userid`='" . $user . "'";
 		
-		if( $result = mysql_query($sql) ) {
+		if( $result = query($sql) ) {
 			return TRUE;
 		}else{
 			echo mysql_error();
@@ -39,21 +39,8 @@ public $userid = '';
 		}
 	}
 	
-	function gen_id() {
-		$characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-		$num = strlen($characters);
-		$length = rand(40,48);
-		$id = "";
-		
-		for($i=0;$i<$length;$i++) {
-			$id .= substr($characters,rand(0,$num-1),1);
-		}
-		
-		return $id;
-	}
-	
 	function create($info = NULL){
-		$id = $this->gen_id();
+		$id = gen_id();
 		
 		$this->username = $info['username'];
 				
@@ -64,7 +51,7 @@ public $userid = '';
 		$sql = "INSERT INTO `" . DB_TBL_SESSIONS . "` SET `id`='". $id ."' , `userid`='". $info['id'] ."'";
 		$sql .= ", `username`='" . $this->username ."', `expire`='". (time() + COOKIE_TIMEOUT) ."'";
 		
-		mysql_query($sql);
+		query($sql);
 		echo mysql_error();
 
 
@@ -80,7 +67,7 @@ public $userid = '';
 		setcookie("username", "234", time() - COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
 
 		$sql = "DELETE FROM `" . DB_TBL_SESSIONS . "` WHERE `id`='" . $this->sessionid . "'";
-		$result = mysql_query($sql);
+		$result = query($sql);
 		echo mysql_error();
 		
 		$this->logged_in = 0;
@@ -98,7 +85,7 @@ public $userid = '';
 		$sql = "UPDATE `sessions` SET `expire`='" . $time . "'";
 		$sql .= " WHERE `userid`='" . $user . "' AND `id`='" . $sess . "'";
 
-		if($result = mysql_query($sql)) {
+		if($result = query($sql)) {
 			setcookie("sessionid", $sess, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
 			setcookie("userid", $this->userid, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
 			setcookie("username", $username, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
