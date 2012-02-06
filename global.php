@@ -12,17 +12,11 @@ $action = isset($_GET['action']) ? $_GET['action']:'';
 
 if($action != 'login' && $action != 'logout') {
 
-	if(isset($_COOKIE['sessionid']) && isset($_COOKIE['userid'])) {
+	if( isset( $_COOKIE['sessionid'] ) ) {
 	
-		if($_COOKIE['sessionid'] != '' && $_COOKIE['userid'] != '' ) {
+		if( $_COOKIE['sessionid'] != '' ) {
 
-			if($Sess->checkSession($_COOKIE['sessionid'], $_COOKIE['userid'])) {
-			
-				$Sess->recreate($_COOKIE['userid'], $_COOKIE['sessionid'], $_COOKIE['username']);
-				$Mem = new Member($_COOKIE['userid']);
-			}else{
-				$Sess = new Session();
-			}
+			$Sess->setSession( $_COOKIE['sessionid']);
 		}
 	}
 }
@@ -54,7 +48,15 @@ if( $action == 'login' ) {
 
 if( $action == 'logout' ) {
 
-	$Sess->destroy($_COOKIE['userid']);
+	if( isset( $_COOKIE['sessionid'] ) ) {
+	
+		if( $_COOKIE['sessionid'] != '' ) {
+
+			$Sess->setSession( $_COOKIE['sessionid']);
+		}
+	}
+
+	$Sess->destroy($Sess->userid);
 	$Mem->logout();
 }
 

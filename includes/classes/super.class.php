@@ -21,9 +21,6 @@ class super {
 	//
 	public function __construct($id = NULL) {
 		$this->profiler = new PhpQuickProfiler(PhpQuickProfiler::getMicroTime());
-		
-		global $DB;
-		$this->DB = $DB;
 
 		if( pop_values($id, &$this) ) {
 			return TRUE;
@@ -184,6 +181,20 @@ class super {
 	//
 	public function set_view_options() {
 	
+	}
+
+	public function load($name) {
+
+		require_once(FS_MODELS . $name . ".php");
+
+		$classes = get_declared_classes();
+
+		$class_name = end($classes);
+		$class_alias = str_replace('_model', '', $class_name);
+
+		$this->$class_alias = new $class_name;
+		print_array($this->class_alias);
+		
 	}
 
 	public function __destruct() {

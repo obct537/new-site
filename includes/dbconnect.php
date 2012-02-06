@@ -1,6 +1,6 @@
 <?php
 
-$DB = new db(DB_HOST,DB_USER,DB_PASSWORD);
+$DB = new db();
 
 if( $DB->connect() ) {
 	errorBox("Database Error");

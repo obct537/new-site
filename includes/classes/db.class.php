@@ -10,15 +10,14 @@ class db {
 	public $queries = array();
 	public $conn;
 
-	private $host;			
-	private $user;		
-	private $password;	
-	private $database;	
+	private $host = DB_HOST;			
+	private $user = DB_USER;	
+	private $password = DB_PASSWORD;	
+	private $database = DB_NAME;	
 
-	function __construct($host, $user, $password) {
-		$this->host = $host;
-		$this->user = $user;
-		$this->password = $password;
+	function __construct() {
+		$this->connect(TRUE);
+		$this->changeDatabase($this->database);
 	}
 	
 	function connect($new = false) {

@@ -30,6 +30,7 @@ class Member extends super {
 			$member = mysql_fetch_assoc($result);
 			$this->logged_in = 1;
 			$Mem = new Member($member['id']);
+
 			return TRUE;
 		}else{ 
 			echo mysql_error();

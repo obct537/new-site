@@ -7,17 +7,18 @@ public $logged_in = 0;
 public $sessionid = '';
 public $userid = '';
 	
-	public function checkSession($id, $userid) {
+	public function checkSession($id) {
 		
-		$sql = "SELECT * FROM `" . DB_TBL_SESSIONS . "` WHERE `id`='" . $id . "' AND `userid`='" . $userid . "' LIMIT 1";
+		$sql = "SELECT * FROM `" . DB_TBL_SESSIONS . "` WHERE `id`='" . $id . "' LIMIT 1";
 		if($result = query($sql)) {
 		
 			$row = mysql_fetch_assoc($result);
 
 			if( $row['expire'] > time() ) {
-				return TRUE;
+				return $row;
 			}elseif( $row['expire'] < time() ) {
-				$this->cleanSessions($userid);
+				$this->cleanSessions($row['id']);
+				return FALSE;
 			}else{
 				return FALSE;
 			}
@@ -41,13 +42,15 @@ public $userid = '';
 	
 	function create($info = NULL){
 		$id = gen_id();
+
+		if( empty($info) ) {
+			return FALSE;
+		}
 		
 		$this->username = $info['username'];
 				
 		setcookie("sessionid", $id, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-		setcookie("userid", $info['id'], time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-		setcookie("username", $info['username'], time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-
+		
 		$sql = "INSERT INTO `" . DB_TBL_SESSIONS . "` SET `id`='". $id ."' , `userid`='". $info['id'] ."'";
 		$sql .= ", `username`='" . $this->username ."', `expire`='". (time() + COOKIE_TIMEOUT) ."'";
 		
@@ -58,42 +61,40 @@ public $userid = '';
 		$this->logged_in = 1;
 	}
 	
-	function destroy($id = NULL){
+	function destroy($userid = NULL){
 
-		$this->cleanSessions($id);
+		$this->cleanSessions($userid);
 
 		setcookie("sessionid", "asdf", time() - COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-		setcookie("userid", "234", time() - COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-		setcookie("username", "234", time() - COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-
-		$sql = "DELETE FROM `" . DB_TBL_SESSIONS . "` WHERE `id`='" . $this->sessionid . "'";
-		$result = query($sql);
-		echo mysql_error();
 		
 		$this->logged_in = 0;
 	}
 	
-	function recreate($user, $sess, $username) {
-	
+	function recreate($session) {
+
+		$this->sessionid = $session['id'];
+		$this->username = $session['username'];
+		$this->userid = $session['userid'];
 		$this->logged_in = 1;
-		$this->userid = $user;
-		$this->sessionid = $sess;
-		$this->username = $username;
 		
 		$time = time() + COOKIE_TIMEOUT;
 		
 		$sql = "UPDATE `sessions` SET `expire`='" . $time . "'";
-		$sql .= " WHERE `userid`='" . $user . "' AND `id`='" . $sess . "'";
+		$sql .= " WHERE `id`='" . $session['id'] . "'";
 
 		if($result = query($sql)) {
-			setcookie("sessionid", $sess, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-			setcookie("userid", $this->userid, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-			setcookie("username", $username, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-
+			setcookie("sessionid", $session['id'], $time, COOKIE_PATH, COOKIE_DOMAIN);
 			return TRUE;
 		}else{
 			return FALSE;
 		}
+	}
+
+	public function setSession($id) {
+		if( $session = $this->checkSession($id) ) {
+			$this->recreate($session);
+			$Mem = new Member($this->username);
+		}		
 	}
 	
 }

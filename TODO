@@ -4,12 +4,10 @@ create a more official "view" system
 
 Fix all the god-awful forms
 
-un-fuck the model/SQL system
-
-simplify/change the sessions/cookies
+Re-orginize the site (separate core and modules)
 
 create a password reset system
 
 finish/un-fuck the user activation system
 
-TEST
+Create a class-based model system

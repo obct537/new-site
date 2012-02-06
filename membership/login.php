@@ -16,7 +16,11 @@ if ( $Sess->logged_in == 0 ) {
 		<input type='submit' class='butten' value="Login">
 	</form>
 	
-	<p><a href="<?php echo WS_MEMBERSHIP;?>signup.php">No account? Register</a></p>
+	<p>
+		<a href="<?php echo WS_MEMBERSHIP;?>signup.php">No account? Register</a><br />
+		<a href="<?php echo WS_MEMBERSHIP;?>reset.php">Forgot your password?</a>
+	</p>
+
 </div>
 
 <?php
