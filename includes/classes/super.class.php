@@ -174,17 +174,25 @@ class super {
 	
 	}
 
+	//
+	// This function loads in a specified model.
+	// Eventually this should be fleshed out a bit, but
+	// for now, it'll get the job done.
+	// 
+	// PARAMS:
+	// 	string $name
+	//		The name of the model to load (just the name, no extension)	
 	public function load($name) {
 
 		require_once(FS_MODELS . $name . ".php");
 
 		$classes = get_declared_classes();
-
+		//This is kinda  terrible, looking for a better way 
+		// to go about this
 		$class_name = end($classes);
 		$class_alias = str_replace('_model', '', $class_name);
 
 		$this->$class_alias = new $class_name;
-		print_array($this->class_alias);
 		
 	}
 

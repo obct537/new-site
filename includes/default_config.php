@@ -12,6 +12,7 @@ define('FS_INCLUDES'	, FS_PATH . 'includes/');
 define('FS_FUNCTIONS'	, FS_INCLUDES . 'functions/');
 define('FS_CLASSES'	, FS_INCLUDES . 'classes/');
 define('FS_SNIPPETS'	, FS_INCLUDES . 'snippets/');
+define('FS_MODELS' 		, FS_INCLUDES . 'models/');
 
 //database
 define('DB_USER'	, '');

@@ -3,6 +3,7 @@
 require_once("includes/config.php");
 require_once( FS_FUNCTIONS . "includes.php");
 include( FS_INCLUDES . "dbconnect.php");
+include( FS_MODELS . "Model.php");
 include('pqp/classes/PhpQuickProfiler.php');
 
 $Mem = new Member();

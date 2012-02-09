@@ -20,54 +20,26 @@ class Member extends super {
 	
 	public function login($info){
 		
-		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS . "` WHERE `username`='" . $info['username'] . "' AND `active`='1' AND `password`='" . $info['password'] . "'";
-
-		
-		$result = query($sql);
-		
-		if( mysql_num_rows($result) > 0 ) {
-			
-			$member = mysql_fetch_assoc($result);
-			$this->logged_in = 1;
-			$Mem = new Member($member['id']);
-
+		$this->load("Member");
+		if( $this->Member->log_in($info) ) {
 			return TRUE;
-		}else{ 
-			echo mysql_error();
+		}else{
 			return FALSE;
 		}
-		echo mysql_error();	
+	}
+
+	public function getMemberID($username) {
+		$this->load("Member");
+		if( $id = $this->Member->getID($username) ) {
+			return $id;
+		}else{
+			return FALSE;
+		}
 	}
 	
 	public function logout() {
 		$this->logged_in = 0;
 		$this->username = '';
-	}
-	
-	public function getMemberID($username) { 
-		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS . "` WHERE `username`='" . $username . "'";
-		
-		$result = query($sql);
-		echo mysql_error();
-		
-		if( mysql_num_rows($result) > 0 ) {
-			$row = mysql_fetch_assoc($result);
-			$id = $row['id'];
-			return $id;
-		}else{
-			return FALSE;
-		}
-	}	
-	
-	public function getLevel($name) {
-		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS ."` WHERE `username`='" . $name . "'";
-		if($res = query($sql)) {
-		
-			$row = mysql_fetch_assoc($res);
-			return $row['level'];
-		}else{
-			return FALSE;
-		}
 	}
 
 	public function create($info, $options) {
@@ -105,14 +77,19 @@ class Member extends super {
 		return $info;
 	}
 
+	public function getLevel() {
+		$this->load("Member");
+		if( $level = $this->Member->level() ) {
+			return $level;
+		}else{
+			return FALSE;
+		}
+	}
+
 	public function signup_email($info) {
-		$key = gen_id();
+		$this->load("Member");
 
-		$sql = "INSERT INTO `" . DB_TBL_ACTIVATE . "` SET ";
-		$sql .= "`key`='" . $key . "', `username`='" . $info['username'];
-		$sql .= "', `timeout`='" . (time() + 600) . "'";
-
-		if( !($res = query( $sql )) ) {
+		if( !($this->Member->createActivation($into)) ) {
 			return FALSE;
 		}
 
@@ -137,11 +114,9 @@ class Member extends super {
 		$key = isset($_GET['key']) ? $_GET['key']:FALSE;
 
 		if( $action == "activate" && $key != FALSE ) {
-			$sql = "SELECT * FROM `" . DB_TBL_ACTIVATE . "` WHERE ";
-			$sql .= "`key`='" . $key . "'";
 
-			if( $res = query($sql) ) {
-				$record = mysql_fetch_assoc($res);
+			$this->load("Member");
+			if( $record = $this->Member->getActivation($key) ) {
 
 				if( $record['timeout'] > time() ) {
 					if( set_single( &$this, "active", 1 ) ) {

@@ -6,10 +6,12 @@ Fix all the god-awful forms
 
 Re-orginize the site (separate core and modules)
 
-create a password reset system
+create a password reset system [on hold until model system complete]
 
-finish/un-fuck the user activation system
+finish/un-fuck the user activation system [near completion]
 
-Create a class-based model system
+Create a class-based model system [in progress]
 
 make password page re-direct to previous page
+
+possibly move functions/model.php into the the model class?
