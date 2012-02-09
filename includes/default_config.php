@@ -51,7 +51,7 @@ define('DB_TBL_TITLES'	, 'titles');
 define('DB_TBL_ISSUES'	, 'help_issues');
 define('DB_TBL_TOPICS'	, 'help_topics');
 define('DB_TBL_ACTIVATE', 'user_activations');
-define('DB_TBL_RESTS'	, 'reset_attempts');
+define('DB_TBL_RESETS'	, 'reset_attempts');
 
 define('COOKIE_PATH'	, '/');
 define('COOKIE_DOMAIN'	, '.obct537.com');

@@ -148,6 +148,31 @@ class Member extends super {
 		}
 	}
 
+	private function resetEmail() {
+		$this->load("Member");
+		$id = $this->Member->getID();
+		$member = new Member($id);
+
+		if( $key = $this->Member->createReset() ) {
+			$message = "To reset your password, click the link below:\n";
+			$message .= WS_MEMBERSHIP . "reset.php?action=reset&key=" . $key;
+
+			$headers = "From: obct537@gmail.com";
+
+			if( mail( $member->email, "Password Reset", $message, $headers ) ) {
+				successBox("Success, check your email inbox.");
+				return TRUE;
+			}else{
+				errorBox("There was a problem, please try again");
+				return FALSE;
+			}
+
+		}else{
+			return FALSE;
+		}
+
+	}
+
 	public function catch_activate() {
 		$action = isset($_GET['action']) ? $_GET['action']:FALSE;
 		$key = isset($_GET['key']) ? $_GET['key']:FALSE;

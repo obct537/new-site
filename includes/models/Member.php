@@ -90,6 +90,22 @@ class Member_model extends Model {
 		}
 	}
 
+	public function createReset($id) {
+
+		$key = gen_id();
+
+		$sql = "INSERT INTO `" . DB_TBL_RESETS . "` SET ";
+		$sql .= "`key`='" . $key . "', `timeout`='" . (time() + 3600) . "'";
+		$sql .= ", `id`='" . $id . "'";
+
+		if( $res = query($sql) ) {
+			return $key;
+		}else{
+			Console::log(mysql_error());
+			return FALSE;
+		}
+	}
+
 	private function resetAttempt($key) {
 		$sql = "SELECT * FROM `" . DB_TBL_RESETS . "`";
 		$sql .= "WHERE `key`='" . $key . "' LIMIT 1";
@@ -98,7 +114,7 @@ class Member_model extends Model {
 			if( $record = mysql_fetch_assoc($res) ) {
 				return $record;
 			}else{
-				Console::log(mysql_error();)
+				Console::log(mysql_error());
 				return FALSE;
 			}
 		}else{
