@@ -11,3 +11,5 @@ create a password reset system
 finish/un-fuck the user activation system
 
 Create a class-based model system
+
+make password page re-direct to previous page

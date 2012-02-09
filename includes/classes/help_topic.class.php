@@ -10,7 +10,7 @@ class help_topic extends super {
 	public $table = DB_TBL_TOPICS;
 	public $form_options = array('parent_id'=>1,
 	       			'name'=>1, 
-				'active'=>1);
+					'active'=>1);
 
 	public $create_success = "Topic successfully created.";
 	public $edit_success = "Topic successfully edited.";

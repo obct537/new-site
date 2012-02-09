@@ -6,10 +6,6 @@ class super {
 	public $create_success = "Success.";
 	public $edit_success = "Success.";
 
-	private $profiler;
-	private $DB;
-	private $db;
-
 	//
 	// initalization function
 	// If the $id is passed, all the object
@@ -20,7 +16,6 @@ class super {
 	//		id of the object being created
 	//
 	public function __construct($id = NULL) {
-		$this->profiler = new PhpQuickProfiler(PhpQuickProfiler::getMicroTime());
 
 		if( pop_values($id, &$this) ) {
 			return TRUE;
@@ -47,8 +42,6 @@ class super {
 				$options['unique'][$key]['value']= $info[$key];
 				$options['unique'][$key]['message'] = $value;
 			}
-		}else{
-			return FALSE;
 		}
 
 		if( !empty( $info ) ) {
@@ -96,8 +89,6 @@ class super {
 				$options['unique'][$key]['value']= $info[$key];
 				$options['unique'][$key]['message'] = $value;
 			}
-		}else{
-			return FALSE;
 		}
 
 		if( create($info, $this->table, $this->form_options, $options) ) { 

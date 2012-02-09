@@ -26,10 +26,20 @@ $issues = $issue->getAll($options);
 		
 
 	<?php
+	if( $Sess->logged_in == 1 ) {
+		if( $Mem->level <= 2 ) {
+
+?>
+		<a href="<?php echo WS_HELP;?>create.php">Create</a><p />
+		</div>
+<?php
+		}
+	}
 
 	$topics = $topic->getChildTopics($topic->id, "topic.php");	
 	
-	echo "<br /><br />";
+	echo "<br />";
+	echo "<p><h3>Notes:</h3></p>";
 
 	foreach($issues as $key=>$value) {
 		if( $value['active'] == 1) {
@@ -40,18 +50,5 @@ $issues = $issue->getAll($options);
 		}
 	}
 
-	if( $Sess->logged_in == 1 ) {
-		$access = 1;
-		$level = $Mem->getLevel($Sess->username);
-	
-		if( $level <= 2 ) {
-	
-?>
-		<br />
-		<br />
-		<a href="<?php echo WS_HELP;?>create.php">Create</a><p />
-		</div>
-	<?php
-		}
-	}
+
 	?>

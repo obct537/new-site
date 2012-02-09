@@ -9,7 +9,7 @@ require_once(FS_MODELS . "Model.php");
 $asdf = new Member(1);
 $asdf->load("Member");
 
-$asdf->Member->getLevel();
+Console::log($asdf);
 ?>
 
 

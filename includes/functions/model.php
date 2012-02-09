@@ -60,7 +60,7 @@ function edit($info, $table, $options) {
 
 function create($info, $table, $values, $options = NULL) {
 	if(!empty($info)) {
-
+		
 		if( !check_unique($info, $table) ) {
 			return FALSE;
 		}
@@ -70,7 +70,7 @@ function create($info, $table, $values, $options = NULL) {
 				return FALSE;
 			}
 		}
-		
+
 		$sql = "INSERT INTO `" . $table . "` SET ";
 		$counter = 1;
 

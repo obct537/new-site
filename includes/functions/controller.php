@@ -12,7 +12,7 @@ function catch_edit($that, $id) {
 		}
 	}
 	$Info['id'] = $id;
-			
+	
 	if( $that->edit($Info, $options) ) {
 		successBox($that->edit_success);
 	}else{
