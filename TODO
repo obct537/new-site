@@ -15,3 +15,13 @@ Create a class-based model system [in progress]
 make password page re-direct to previous page
 
 possibly move functions/model.php into the the model class?
+
+create a routing system?
+
+system to handle GET variables a bit smoother
+
+change password error-checking to JavaScript
+
+input validation system
+
+come up with some sort of rules about naming conventions (it's gotten that bad)

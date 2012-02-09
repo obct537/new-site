@@ -109,6 +109,45 @@ class Member extends super {
 			
 	}
 
+	public function catch_reset_attempt() {
+		$key = isset($_GET['key']) ? $_GET['key']:FALSE;
+
+		if( $key != FALSE ) {
+			$this->load("Member");
+			if( $reset = $this->Member->resetAttempt($key) ) {
+				if( $reset['timeout'] > time() ) {
+					return TRUE;
+				}else{
+					return FALSE;
+				}
+			}else{
+				return FALSE;
+			}
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function catch_reset() {
+		$action = isset($_GET['action']) ? $_GET['action']: FALSE;
+
+		if( $action == "reset") {
+			if( $this->changePassword() ) {
+				return FALSE;
+			}
+		}elseif( $action == "attempt" ) {
+			if( $this->catch_reset_attempt() ) {
+				return "change";
+			}
+		}elseif( $action == "request" ) {
+			if( $this->resetEmail() ) {
+				return FALSE;
+			}
+		}else{
+			return FALSE;
+		}
+	}
+
 	public function catch_activate() {
 		$action = isset($_GET['action']) ? $_GET['action']:FALSE;
 		$key = isset($_GET['key']) ? $_GET['key']:FALSE;
