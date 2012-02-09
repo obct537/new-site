@@ -36,12 +36,15 @@ function print_array($array) {
 	echo "</pre>";
 }
 
-function errorBox($string) {
-	if( !empty($string) ) {
-		echo "<div class=\"response error\">";
-		echo "<p>" . $string . "</p>";
-		echo "</div>";
+function errorBox($string = NULL) {
+
+	if( $string == NULL ) {
+		$string = "There was a problem, please try again.";
 	}
+
+	echo "<div class=\"response error\">";
+	echo "<p>" . $string . "</p>";
+	echo "</div>";
 }
 
 function successBox($string) {

@@ -93,10 +93,10 @@ class Member_model extends Model {
 	public function createReset($id) {
 
 		$key = gen_id();
-
+		Console::log($id);
 		$sql = "INSERT INTO `" . DB_TBL_RESETS . "` SET ";
 		$sql .= "`key`='" . $key . "', `timeout`='" . (time() + 3600) . "'";
-		$sql .= ", `id`='" . $id . "'";
+		$sql .= ", `userid`='" . $id . "'";
 
 		if( $res = query($sql) ) {
 			return $key;
@@ -106,7 +106,7 @@ class Member_model extends Model {
 		}
 	}
 
-	private function resetAttempt($key) {
+	public function resetAttempt($key) {
 		$sql = "SELECT * FROM `" . DB_TBL_RESETS . "`";
 		$sql .= "WHERE `key`='" . $key . "' LIMIT 1";
 
@@ -119,6 +119,41 @@ class Member_model extends Model {
 			}
 		}else{
 			Console::log(mysql_error());
+			return FALSE;
+		}
+	}
+
+	public function clearAttempts($id) {
+		$sql = "DELETE FROM `" . DB_TBL_RESETS . "` WHERE userid='" . $id . "'";
+
+		if( $res = query($sql) ) {
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function getReset($key) {
+		$sql = "SELECT * FROM `" . DB_TBL_RESETS . "` WHERE `key`='" . $key . "'";
+
+		if( $res = query( $sql ) ) {
+			if( $record = mysql_fetch_assoc($res) ) {
+				return $record['userid'];
+			}else{
+				return FALSE;
+			}
+		}else{
+			return FALSE;
+		}
+	}
+
+	public function change_password($pass, $id) {
+		$sql = "UPDATE `" . DB_TBL_MEMBERS . "` SET `password`='" . $pass . "'";
+		$sql .= "WHERE `id`='" . $id . "'";
+
+		if( $res = query($sql) ) {
+			return TRUE;
+		}else{
 			return FALSE;
 		}
 	}

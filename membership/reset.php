@@ -17,6 +17,7 @@ if( $Sess->logged_in == 0 ) {
 			<label for='username'>Repeat the passsword:</label>
 			<input type='password' class='loginBox' name='pass2'>
 			<input type='submit' class='butten' value="Submit">
+			<input type='hidden' value="<?php echo $_GET['key'];?>" name="key">
 		</form>
 	</div>
 

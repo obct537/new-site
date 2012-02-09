@@ -128,6 +128,32 @@ class Member extends super {
 		}
 	}
 
+	private function changePassword() {
+		if( isset($_POST['pass1']) && isset( $_POST['key']) )	{
+			if( $_POST['pass1'] == $_POST['pass2'] ) {
+				$pass = md5($_POST['pass1']);
+
+				$this->load("Member");
+				
+				//Gets userid, plus it double-checks the reset attempt
+				if( !($id = $this->Member->getReset($_POST['key']) ) ) {
+					errorBox();
+					return FALSE;
+				}
+
+				$this->Member->clearAttempts($id);
+
+				if( $this->Member->change_password($pass, $id) ) {
+					successBox("Password changed.");
+					return FALSE;
+				}else{
+					errorBox("There was a problem, please try again");
+					return FALSE;
+				}
+			} 
+		}
+	}
+
 	public function catch_reset() {
 		$action = isset($_GET['action']) ? $_GET['action']: FALSE;
 
@@ -149,13 +175,17 @@ class Member extends super {
 	}
 
 	private function resetEmail() {
+
+		$username = isset( $_POST['username'] ) ? $_POST['username']:FALSE;
+
 		$this->load("Member");
-		$id = $this->Member->getID();
+		$id = $this->Member->getID($username);
 		$member = new Member($id);
 
-		if( $key = $this->Member->createReset() ) {
+		if( $key = $this->Member->createReset($id) ) {
 			$message = "To reset your password, click the link below:\n";
-			$message .= WS_MEMBERSHIP . "reset.php?action=reset&key=" . $key;
+			$message .= "Note: This reset attempt will be valid for 1 hour.\n";
+			$message .= WS_MEMBERSHIP . "reset.php?action=attempt&key=" . $key;
 
 			$headers = "From: obct537@gmail.com";
 
