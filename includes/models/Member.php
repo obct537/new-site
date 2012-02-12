@@ -8,8 +8,8 @@ class Member_model extends Model {
 
 	}
 
-	public function level() {
-		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS ."` WHERE `username`='" . $name . "'";
+	public function level($id) {
+		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS ."` WHERE `id`='" . $id . "'";
 		if($res = query($sql)) {
 		
 			$row = mysql_fetch_assoc($res);
@@ -50,17 +50,6 @@ class Member_model extends Model {
 			$row = mysql_fetch_assoc($result);
 			$id = $row['id'];
 			return $id;
-		}else{
-			return FALSE;
-		}
-	}
-
-	public function getLevel($name) {
-		$sql = "SELECT * FROM `" . DB_TBL_MEMBERS ."` WHERE `username`='" . $name . "'";
-		if($res = query($sql)) {
-		
-			$row = mysql_fetch_assoc($res);
-			return $row['level'];
 		}else{
 			return FALSE;
 		}

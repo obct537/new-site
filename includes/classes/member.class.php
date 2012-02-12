@@ -77,9 +77,9 @@ class Member extends super {
 		return $info;
 	}
 
-	public function getLevel() {
+	public function getLevel($id) {
 		$this->load("Member");
-		if( $level = $this->Member->level() ) {
+		if( $level = $this->Member->level($id) ) {
 			return $level;
 		}else{
 			return FALSE;

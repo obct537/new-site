@@ -17,74 +17,50 @@ class help_topic extends super {
 
 	public function getChildTopics($parent, $page = NULL, $topics = NULL, $counter = NULL){
 
-		$sql = "SELECT * FROM `". DB_TBL_TOPICS . "` WHERE `parent_id`='" . $parent ."'";
-		
-		if( $page == "topic.php" ) {
-			$sql .= " AND `active`='1'";
-		}
+		$this->load("Topic");
+		$res = $this->Topic->getTopics($parent, $page);
 
-		if($res = query($sql)) {
+		$counter++;
+		if( mysql_num_rows($res) > 0 ){
 
-			$counter++;
-			if( mysql_num_rows($res) > 0 ){
+			while($record = mysql_fetch_assoc($res)) {
+				$topics[] = $record;
 
-				while($record = mysql_fetch_assoc($res)) {
-					$topics[] = $record;
+				echo "|";
+				dupe($counter,"&middot;&middot;&middot;", 1);
 
-					echo "|";
-					dupe($counter,"&middot;&middot;&middot;", 1);
+				echo "<a href=\"". WS_HELP . 
+					$page . "?id=" . $record['id'] . "\">" .
+					$record['name'] . " (" .
+					$this->getIssueCount($record['id']) . ")" .
+					"</a><br />";
 
-					echo "<a href=\"". WS_HELP . 
-						$page . "?id=" . $record['id'] . "\">" .
-						$record['name'] . " (" .
-						$this->getIssueCount($record['id']) . ")" .
-						"</a><br />";
-
-					$topics = $this->getChildTopics($record['id'], $page, $topics, $counter);
-				}
-				return $topics;
-			}else{
-				return $topics;
+				$topics = $this->getChildTopics($record['id'], $page, $topics, $counter);
 			}
+			return $topics;
+		}else{
+			return $topics;
 		}
 	}
 
 	public function getIssueCount($id) {
-		$sql = "SELECT * FROM `" . DB_TBL_ISSUES . "` WHERE `topic_id`='" . $id . "'";
-		$count = 0;
-
-		if($res = query($sql)) {
-			while($record = mysql_fetch_assoc($res)) {
-				$count++;
-			}
-		}else{
-			echo mysql_error();
-			return FALSE;
-		}
+		$this->load("Topic");
+		$count = $this->Topic->issueCount($id);
 
 		return $count;
 	}
 
 	private function createCrumbs($id, $crumbs = NULL, $counter = 0) {
 	
-		$sql = "SELECT * FROM `" . $this->table . "` WHERE `id`='" . $id . "' LIMIT 1";
+		if( $record = $this->getSingle($id) ) {
+			$crumbs[$counter]['name'] = $record['name'];
+			$crumbs[$counter]['id'] = $record['id'];
 
-		if($res = query($sql) ) {
-			if( mysql_num_rows($res) > 0 ) {
+			$counter++;
+			return $this->createCrumbs($record['parent_id'], $crumbs, $counter);
 
-				$record = mysql_fetch_assoc($res);
-				$crumbs[$counter]['name'] = $record['name'];
-				$crumbs[$counter]['id'] = $record['id'];
-
-				$counter++;
-				return $this->createCrumbs($record['parent_id'], $crumbs, $counter);
-
-			}else{
-				return $crumbs;
-			}
 		}else{
-			echo mysql_error();
-			return FALSE;
+			return $crumbs;
 		}
 
 	}

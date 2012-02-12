@@ -1,7 +1,7 @@
 <?php 
 
 include("../global.php");
-$Page = new Page("View Help Issues");
+$Page = new Page("View Help Issues",2);
 
 echo $Page->content;
 
@@ -18,20 +18,9 @@ $topic->catch_action();
 			Topics
 		</h2>
 	</div>
-<?php		
-	if( $Sess->logged_in == 1 ) {
-		$access = 1;
-		$level = $Mem->getLevel($Sess->username);
-	
-		if( $level <= 2 ) {
-	
-?>
 		<a href="<?php echo WS_HELP;?>create_topic.php">Create</a><p />
 		</div>
 <?php
-		}
-	}
-
 	$topics = $topic->getChildTopics(0, "edit_topic.php");	
 	
 	echo "<br /><br />";

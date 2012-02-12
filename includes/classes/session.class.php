@@ -6,6 +6,7 @@ public $username = '';
 public $logged_in = 0;
 public $sessionid = '';
 public $userid = '';
+
 	
 	public function checkSession($id) {
 		

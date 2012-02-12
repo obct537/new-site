@@ -16,7 +16,7 @@ $topic = new help_topic();
 			<h2><?php echo $issue->title;?></h2>
 <?php	
 			if( $Sess->logged_in == 1 ) {
-				$level = $Mem->getLevel($Sess->username);
+				$level = $Mem->getLevel($Sess->userid);
 	
 				if( $level <= 2 ) {
 ?>

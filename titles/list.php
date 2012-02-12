@@ -1,7 +1,7 @@
 <?php 
 
 include("../global.php");
-$Page = new Page("View Titles");
+$Page = new Page("View Titles", 1);
 
 echo $Page->content;
 
@@ -13,23 +13,11 @@ $titles = $title->view();
 	<div class='formz'>
 		<div class="displayTitle top">
 		<h2>Titles</h2>
-		</div>
-		
-	<?php 
-	
-	if( $Sess->logged_in == 1 ) {
-		$access = 1;
-		$level = $Mem->getLevel($Sess->username);
-	
-		if( $level <= 2 ) {
-	
-	?>
+	</div>
 	
 	<a href="<?php echo WS_TITLES;?>create.php">Create a title</a><p />
 	
 	<?php
-		}
-	}
 	
 	foreach($titles as $key=>$value) {
 		if( $value['active'] == 1) {
@@ -37,9 +25,8 @@ $titles = $title->view();
 	
 		<h3 class="underline"><?php echo $value['title'];?></h3>
 			
-		<?php if( $access == 1 ) {
+		<?php 
 			echo "<a href=\"" . WS_TITLES . "edit.php?id=". $value['id'] ."\">edit</a>";
-		}
 		?>
 		</p>
 	
