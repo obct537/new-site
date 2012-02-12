@@ -6,9 +6,9 @@ Fix all the god-awful forms
 
 Re-orginize the site (separate core and modules)
 
-create a password reset system [on hold until model system complete]
+create a password reset system [needs more testing]
 
-finish/un-fuck the user activation system [near completion]
+finish/un-fuck the user activation system [needs more testing]
 
 Create a class-based model system [in progress]
 

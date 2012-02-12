@@ -16,6 +16,7 @@ global $Mem;
 	<meta name="author" content="" />
 	<link rel="stylesheet" type="text/css" href="<?php echo TPL_STYLES;?>style.css" />
 	<link rel="stylesheet" type="text/css" href="<?php echo WS_JAVASCRIPT;?>/jqueryui/css/custom-theme/jquery-ui-1.8.16.custom.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo WS_JAVASCRIPT;?>/jquery-validation-1.9.0/jquery.validate.min.js" />
 	<script src="<?php echo WS_URL; ?>/includes/javascript/js/jquery-1.6.4.min.js" type="text/javascript"></script>
 	<script src="<?php echo WS_URL; ?>/includes/javascript/jqueryui/js/jquery-ui-1.8.16.custom.min.js" type="text/javascript"></script>
 	<title>obct537 | <?php echo $newTitle['title'];?></title>

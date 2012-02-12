@@ -1,6 +1,6 @@
 <?php
 
-class Session {
+class Session extends super {
 
 public $username = '';
 public $logged_in = 0;
@@ -9,10 +9,8 @@ public $userid = '';
 	
 	public function checkSession($id) {
 		
-		$sql = "SELECT * FROM `" . DB_TBL_SESSIONS . "` WHERE `id`='" . $id . "' LIMIT 1";
-		if($result = query($sql)) {
-		
-			$row = mysql_fetch_assoc($result);
+		$this->load("Session");
+		if( $row = $this->Session->getSession($id)) {
 
 			if( $row['expire'] > time() ) {
 				return $row;
@@ -22,22 +20,20 @@ public $userid = '';
 			}else{
 				return FALSE;
 			}
-
 		}else{
 			return FALSE;
 		}
+
 	}
 	
 	public function cleanSessions($user) {
-
-		$sql = "DELETE FROM `" . DB_TBL_SESSIONS . "` WHERE `userid`='" . $user . "'";
-		
-		if( $result = query($sql) ) {
+		$this->load("Session");
+		if($this->Session->deleteUserSessions($user)) {
 			return TRUE;
 		}else{
-			echo mysql_error();
 			return FALSE;
 		}
+
 	}
 	
 	function create($info = NULL){
@@ -50,13 +46,9 @@ public $userid = '';
 		$this->username = $info['username'];
 				
 		setcookie("sessionid", $id, time() + COOKIE_TIMEOUT, COOKIE_PATH, COOKIE_DOMAIN);
-		
-		$sql = "INSERT INTO `" . DB_TBL_SESSIONS . "` SET `id`='". $id ."' , `userid`='". $info['id'] ."'";
-		$sql .= ", `username`='" . $this->username ."', `expire`='". (time() + COOKIE_TIMEOUT) ."'";
-		
-		query($sql);
-		echo mysql_error();
 
+		$this->load("Session");
+		$this->Session->createSession($id, $info, $this->username);
 
 		$this->logged_in = 1;
 	}

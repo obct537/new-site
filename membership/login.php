@@ -5,10 +5,17 @@ $Mem->catch_activate();
 
 if ( $Sess->logged_in == 0 ) {
 ?>
-
+<script type="text/javascript">
+	$("#loginForm").validate({
+		rules: {
+			username: "required",
+			password: "required"
+		}
+	})
+</script>
 
 <div class="box_content formz">
-	<form action="<?php echo WS_URL;?>?action=login" method='post' class='login' >
+	<form action="<?php echo WS_URL;?>?action=login" method='post' id="loginForm" class='login' >
 		<label for='username'>Username:</label>
 		<input type='text' class='loginBox' name='username'>
 		<label for='password'>Password:</label>
