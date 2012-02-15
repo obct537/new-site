@@ -10,12 +10,21 @@ $id = (isset($_GET['id']))? $_GET['id']:FALSE;
 $topic = new help_topic($id);
 
 ?>
+<script>
+$().ready(function() {
+	$("#editTopic").validate({
+		rules: {
+			name: "required"
+		}
 
+	});
+});
+</script>
 <div class='formz'>
 <div class='displayTitle'>
 <h2>TYPE NOW FOOL</h2>
 </div>
-<form action="list_topics.php?action=edit&id=<?php echo $topic->id;?>" method="post">
+<form action="list_topics.php?action=edit&id=<?php echo $topic->id;?>" id="editTopic" method="post">
 	<div class="form_group">
 		<label for='name'>Name:</label>
 		<input type='text' class='textz' name='name' value="<?php echo $topic->name;?>"/>

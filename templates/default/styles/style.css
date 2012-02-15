@@ -207,21 +207,21 @@ h2 {
 	opacity: .7;
 }
 
-.success {
+.successBox {
 	background-color: #9EFFAB;
 	border: 5px solid #30C945;
 }
 
-.success p {
+.successBox p {
 	color: #30C945 !important;
 }
 
-.error {
+.errorBox {
 	background-color: #FFC4C4;
 	border: 5px solid #FF7373;
 }
 
-.error p {
+.errorBox p {
 	color: #FF7373 !important;
 }
 
@@ -229,6 +229,17 @@ h2 {
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+}
+
+/* Jquery Validate */
+
+.error {
+	border: 3px solid #ff2b2e;
+	border-radius: 3px;
+}
+
+.error label {
+	border: none;
 }
 
 .footer p {

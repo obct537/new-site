@@ -42,14 +42,14 @@ function errorBox($string = NULL) {
 		$string = "There was a problem, please try again.";
 	}
 
-	echo "<div class=\"response error\">";
+	echo "<div class=\"response errorBox\">";
 	echo "<p>" . $string . "</p>";
 	echo "</div>";
 }
 
 function successBox($string) {
 	if( !empty($string) ) {
-		echo "<div class=\"response success\">";
+		echo "<div class=\"response successBox\">";
 		echo "<p>" . $string . "</p>";
 		echo "</div>";
 	}

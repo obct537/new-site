@@ -10,8 +10,6 @@ create a password reset system [needs more testing]
 
 finish/un-fuck the user activation system [needs more testing]
 
-Create a class-based model system [in progress]
-
 make password page re-direct to previous page
 
 possibly move functions/model.php into the the model class?
@@ -22,6 +20,12 @@ system to handle GET variables a bit smoother
 
 change password error-checking to JavaScript
 
-input validation system
+input validation system[WIP]
+
+Fix validation issues with content-boxes
 
 come up with some sort of rules about naming conventions (it's gotten that bad)
+
+When creating a help-issue, have the topic_id set when the page loads, and remove NONE option
+
+Force PQP to the bottom

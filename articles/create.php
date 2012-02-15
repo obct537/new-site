@@ -7,12 +7,22 @@ includeMCE();
 echo $Page->content;
 
 ?>
+<script>
+$().ready(function() {
+	$("#createArticle").validate({
+		rules: {
+			title: "required",
+			content: "required"
+		}
 
+	});
+});
+</script>
 <div class='formz'>
 	<div class='displayTitle'>
 		<h2>Talk about stuff</h2>
 	</div>
-	<form action="view.php?action=create" method="post">
+	<form action="view.php?action=create" id="createArticle" method="post">
 		<label for='name'>Article Name:</label>
 		<input type='text' class='textz' name='title'  />
 		<label for='active'>Active:</label>

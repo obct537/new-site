@@ -10,15 +10,25 @@ $topic = new help_topic();
 $issue = new issue();
 
 ?>
+<script>
+$().ready(function() {
+	$("#createIssue").validate({
+		rules: {
+			title: "required",
+			content: "required"
+		}
 
+	});
+});
+</script>
 <div class='formz'>
 <div class='displayTitle'>
 <h2>TYPE NOW FOOL</h2>
 </div>
-<form action="control_panel.php?action=create" method="post">
+<form action="control_panel.php?action=create" method="post" id="createIssue">
 	<div class="form_group">
 		<label for='name'>Title:</label>
-		<input type='text' class='textz' name='title'  />
+		<input type='text' class='textz' id='title' name='title'  />
 	</div>
 	<div class="form_group">
 		<label for='active'>Active:</label>

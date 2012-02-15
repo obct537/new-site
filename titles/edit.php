@@ -12,12 +12,21 @@ $title = new title();
 $oldTitle = $title->getSingle($id);
 
 ?>
+<script>
+$().ready(function() {
+	$("#editTitle").validate({
+		rules: {
+			title: "required"
+		}
 
+	});
+});
+</script>
 <div class='formz'>
 	<div class='displayTitle'>
 		<h2>Edit title</h2>
 	</div>
-	<form action="list.php?action=edit&id=<?php echo $oldTitle['id'];?>" method="post">
+	<form action="list.php?action=edit&id=<?php echo $oldTitle['id'];?>" id="editTitle" method="post">
 		<label for='name'>Title:</label>
 		<input type='text' class='textz' name='title' value='<?php echo str_replace("'", "&#39;", $oldTitle['title']);?>' />
 		<label for='active'>Active:</label>

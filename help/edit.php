@@ -11,11 +11,23 @@ $issue = new issue($id);
 
 $topic = new help_topic();
 ?>
+
+<script>
+$().ready(function() {
+	$("#editIssue").validate({
+		rules: {
+			title: "required",
+			content: "required"
+		}
+
+	});
+});
+</script>
 <div class='formz'>
 <div class='displayTitle'>
 <h2>TYPE NOW FOOL</h2>
 </div>
-<form action="control_panel.php?action=edit&id=<?php echo $id;?>" method="post">
+<form action="control_panel.php?action=edit&id=<?php echo $id;?>" method="post" id="editIssue">
 	<div class="form_group">
 		<label for='name'>Title:</label>
 		<input type='text' class='textz' name='title' value="<?php echo $issue->title;?>" />

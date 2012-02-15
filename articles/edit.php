@@ -13,12 +13,22 @@ $id = isset($_GET['id'])? $_GET['id']:FALSE;
 $article = $art->getSingle($id);
 
 ?>
+<script>
+$().ready(function() {
+	$("#editArticle").validate({
+		rules: {
+			title: "required",
+			content: "required"
+		}
 
+	});
+});
+</script>
 <div class='formz'>
 	<div class='displayTitle'>
 		<h2>Talk about stuff</h2>
 	</div>
-	<form action="view.php?action=edit&id=<?php echo $article['id'];?>" method="post">
+	<form action="view.php?action=edit&id=<?php echo $article['id'];?>" id="editArticle" method="post">
 		<label for='name'>Article Name:</label>
 		<input type='text' class='textz' name='title' value='<?php echo $article['title'];?>' />
 		<label for='active'>Active:</label>
