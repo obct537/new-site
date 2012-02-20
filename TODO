@@ -10,10 +10,6 @@ create a password reset system [needs more testing]
 
 finish/un-fuck the user activation system [needs more testing]
 
-make password page re-direct to previous page
-
-possibly move functions/model.php into the the model class?
-
 create a routing system?
 
 system to handle GET variables a bit smoother

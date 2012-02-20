@@ -38,9 +38,13 @@ if( $action == 'login' ) {
 
 		$info['id'] = $id;		
 
+		$path = WS_URL;
+		$path .= isset($_GET['back']) ? $_GET['back']:'';
+
 		if( $Mem->login($info) ) {
 			$userInfo = $Mem->getSingle($id);
 			$Sess->create($userInfo);
+			header("location:" . $path );
 		}else{
 			errorBox("Bad username or password");
 		}

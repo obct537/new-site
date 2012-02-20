@@ -3,6 +3,8 @@ include("../global.php");
 $Page = new Page("Member Info");
 $Mem->catch_activate();
 
+$back = isset($_GET['back']) ? $_GET['back']:FALSE;
+
 if ( $Sess->logged_in == 0 ) {
 ?>
 <script type="text/javascript">
@@ -15,7 +17,7 @@ if ( $Sess->logged_in == 0 ) {
 </script>
 
 <div class="box_content formz">
-	<form action="<?php echo WS_URL;?>?action=login" method='post' id="loginForm" class='login' >
+	<form action="<?php echo WS_URL;?>?action=login&back=<?php echo $back;?>" method='post' id="loginForm" class='login' >
 		<label for='username'>Username:</label>
 		<input type='text' class='loginBox' name='username'>
 		<label for='password'>Password:</label>

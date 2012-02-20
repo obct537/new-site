@@ -57,8 +57,9 @@ global $Mem;
 
 				<?php
 			}elseif ( $Sess->logged_in == 0 ) {
+				$back = $_SERVER['SCRIPT_NAME'];
 			?>
-				<form action="<?php echo WS_MEMBERSHIP;?>login.php" method='post'>
+				<form action="<?php echo WS_MEMBERSHIP;?>login.php?back=<?php echo $back;?>" method='post'>
 					<input type='submit' name='logout' class='topLogin' value='Login'>
 				</form>
 				
